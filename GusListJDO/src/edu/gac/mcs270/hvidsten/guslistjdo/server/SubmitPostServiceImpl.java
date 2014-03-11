@@ -24,5 +24,13 @@ public class SubmitPostServiceImpl extends
 		pm.deletePersistent(post);
 		return "post deleted";
 	}
+	
+	@Override
+	public String editPost(long postID) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		PostData post = pm.getObjectById(PostData.class, postID);
+		return "test";
+		
+	}
 
 }

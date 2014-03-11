@@ -156,6 +156,97 @@ public class GusListView {
 		postFormPanel.add(submitButton);
 	}
 	
+	public void viewEditAdForm(PostData post) {
+		RootPanel rootPanel = RootPanel.get();
+		rootPanel.clear();
+		makeMenuBar(rootPanel);
+		
+		HorizontalPanel horizontalPanel = new HorizontalPanel();
+		rootPanel.add(horizontalPanel, 10, 79);
+		
+		makeSideBar(horizontalPanel);
+		
+		VerticalPanel postFormPanel = new VerticalPanel();
+		horizontalPanel.add(postFormPanel);
+		
+		// Name input
+		HorizontalPanel nameRow = new HorizontalPanel();
+		Label nameLabel = new Label("Name (First Last");
+		final TextBox nameTextbox = new TextBox();
+		
+		// Set the name box to seller's name
+		Seller seller = post.getSeller();
+		nameTextbox.setText(seller.getName());
+		
+		nameRow.add(nameLabel);
+		nameRow.add(nameTextbox);
+		postFormPanel.add(nameRow);
+		
+		// Title input
+		HorizontalPanel titleRow = new HorizontalPanel();
+		Label titleLabel = new Label("Title (e.g. car, bike, etc)");
+		final TextBox titleTextbox = new TextBox();
+		
+		// Set to original title
+		titleTextbox.setText(post.getTitle());
+		
+		titleRow.add(titleLabel);
+		titleRow.add(titleTextbox);
+		postFormPanel.add(titleRow);
+		
+		// Description input
+		HorizontalPanel descrRow = new HorizontalPanel();
+		Label descrLabel = new Label("Item Short description");
+		final TextArea descrText = new TextArea();
+		
+		// Set description text
+		descrText.setText(post.getDescription());
+		
+		descrText.setCharacterWidth(40);
+		descrText.setVisibleLines(10);
+		descrRow.add(descrLabel);
+		descrRow.add(descrText);
+		postFormPanel.add(descrRow);
+		
+		// Price input
+		HorizontalPanel priceRow = new HorizontalPanel();
+		Label priceLabel = new Label("Price ($)");
+		final TextBox priceTextbox = new TextBox();
+		
+		// Set original price converts double to string
+		priceTextbox.setText(Double.toString(post.getPrice()));
+		
+		priceTextbox.setVisibleLength(6);
+		priceRow.add(priceLabel);
+		priceRow.add(priceTextbox);
+		postFormPanel.add(priceRow);
+		
+		// Submit button
+		Button submitButton = new Button("Submit Ad");
+		submitButton.setStyleName("sideBarButton");
+		submitButton.setText("Submit Ad");
+		
+		submitButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				String name = nameTextbox.getText();
+				String title = titleTextbox.getText();
+				String descr = descrText.getText();
+				double price = Double.valueOf(priceTextbox.getText());
+				// Validate entries
+				if(name.length()>0 && title.length()>0 && price >=0.0){
+					PostData post = new PostData(title,descr,price,
+							new Seller(name), null);
+					control.handlePostSubmit(post);
+				}
+				else {
+					// Should send error message to user
+				}
+			}
+	      });
+		postFormPanel.add(submitButton);
+	}
+	
 	private void makePostTable(List<PostData> posts, FlowPanel flowPanel) {
 		for(PostData post: posts){
 			flowPanel.add(makePostRow(post));
@@ -191,6 +282,13 @@ public class GusListView {
 			}
 		});
 		deleteButton.setText("Delete");
+		Button editButton = new Button("Edit");
+		editButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				return;
+			}
+		});
 		row.add(titleLabel);
 		row.add(descrLabel);
 		row.add(priceLabel);

@@ -11,4 +11,5 @@ import edu.gac.mcs270.hvidsten.guslistjdo.shared.PostData;
 public interface SubmitPostService extends RemoteService {
 	public String submitPostToServer(PostData post);
 	public String deletePost(long id);
+	public String editPost(long id);
 }
