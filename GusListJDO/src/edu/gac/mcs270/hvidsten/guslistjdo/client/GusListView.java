@@ -166,25 +166,28 @@ public class GusListView {
 		HorizontalPanel row = new HorizontalPanel();
 		Label titleLabel = new Label(post.getTitle());
 		titleLabel.addStyleName("postLabel");
-		Label descrLabel = new Label(post.getDescription());
+		final String postDescription = post.getDescription();
+		Label descrLabel = new Label(postDescription);
 		descrLabel.addStyleName("postLabel");
 		Label priceLabel = new Label("$"+post.getPrice());
 		priceLabel.addStyleName("postLabel");
 		Button infoButton = new Button("More Info");
 		infoButton.addStyleName("postInfoButton");
 		infoButton.setText("More Info");
+		final long postID = post.getId();
+		
 		//add a clickListener to the button
 		infoButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				// To Do
+				Window.alert(postDescription);
 			}
 	      });
 		Button deleteButton = new Button("Delete");
 		deleteButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				// long id = post.getId();
+				control.handleDeleteRequest(postID);
 			}
 		});
 		deleteButton.setText("Delete");
