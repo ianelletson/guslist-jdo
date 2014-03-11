@@ -2,6 +2,9 @@ package edu.gac.mcs270.hvidsten.guslistjdo.client;
 
 import java.util.List;
 
+import javax.jdo.PersistenceManager;
+
+import edu.gac.mcs270.hvidsten.guslistjdo.server.PMF;
 import edu.gac.mcs270.hvidsten.guslistjdo.shared.PostData;
 
 import com.google.gwt.core.client.EntryPoint;
@@ -59,6 +62,17 @@ public class GusList implements EntryPoint {
 			}
 		});
 		
+	}
+	
+	public void handleDeleteRequest(long postID) {
+		submitPostService.deletePost(postID, new AsyncCallback<String>() {
+			public void onFailure(Throwable caught) {
+				return;
+			}
+			public void onSuccess(String result) {
+				glView.sendSuccessfulDeleteMessage();
+			}
+		});
 	}
 
 	public void handleTitleSearchRequest(String title) {

@@ -180,10 +180,19 @@ public class GusListView {
 				// To Do
 			}
 	      });
+		Button deleteButton = new Button("Delete");
+		deleteButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				// long id = post.getId();
+			}
+		});
+		deleteButton.setText("Delete");
 		row.add(titleLabel);
 		row.add(descrLabel);
 		row.add(priceLabel);
 		row.add(infoButton);
+		row.add(deleteButton);
 		return row;
 	}
 
@@ -299,5 +308,9 @@ public class GusListView {
 	
 	public void sendSuccessfulPostmessage() {
 		Window.alert("Post was successfully stored.");
+	}
+	
+	public void sendSuccessfulDeleteMessage() {
+		Window.alert("Post successfully deleted.");
 	}
 }
