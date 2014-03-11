@@ -10,6 +10,11 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(identityType=IdentityType.APPLICATION)
 public class PostData implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5539539987489885476L;
+
 	@PrimaryKey
 	@Persistent(valueStrategy=IdGeneratorStrategy.IDENTITY)
 	private Long id;
