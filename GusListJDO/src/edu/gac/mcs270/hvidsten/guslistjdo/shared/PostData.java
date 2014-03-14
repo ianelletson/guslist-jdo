@@ -20,7 +20,7 @@ public class PostData implements Serializable {
 	private Long id;
 	
 	@Persistent
-	private String title="no title";
+	public String title="no title";
 	@Persistent
 	private String description="empty";
 	@Persistent
