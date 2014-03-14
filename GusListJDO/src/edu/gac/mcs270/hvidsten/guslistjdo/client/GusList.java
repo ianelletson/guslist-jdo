@@ -62,6 +62,25 @@ public class GusList implements EntryPoint {
 	}
 
 	public void handleTitleSearchRequest(String title) {
+
 		// Need to implement servlet communication
+		postDataService.getSearchDataFromServer(title, 
+				new AsyncCallback<List<PostData>>(){
+
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+						System.out.println("fail");
+						return;
+					}
+
+					@Override
+					public void onSuccess(List<PostData> data) {
+						// TODO Auto-generated method stub
+						System.out.println("Success");
+						glView.viewPostData(data);
+					}
+				
+		});
 	}
 }

@@ -283,6 +283,7 @@ public class GusListView {
 		searchBtn.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
+				System.out.println("clicked search button");
 				control.handleTitleSearchRequest(searchTermTextBox.getText());
 				searchPopup.hide();
 			}
