@@ -41,6 +41,10 @@ public class PostData implements Serializable {
 		buyer = b;
 	}
 
+	public long getId() {
+		return id;
+	}
+	
 	public String getTitle(){
 		return title;
 	}
